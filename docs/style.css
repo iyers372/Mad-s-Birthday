@@ -16,7 +16,8 @@ body{
   margin:0;
   font-family: system-ui, -apple-system, sans-serif;
   color: rgba(255,255,255,0.95);
-  overflow: hidden;
+overflow-y: auto;         /* ✅ allow vertical scroll */
+  -webkit-overflow-scrolling: touch;
 
   /* ✅ solid black background */
   background: #000;
