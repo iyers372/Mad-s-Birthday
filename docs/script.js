@@ -108,8 +108,8 @@ const DATA = {
     title: "Open When You Need Me",
     items: [
       { title: "Open when you miss me", text: "You see that little phone icon next to my name? Press it and talk to me, 2am or 4pm, I'm here no matter what; and I'll help you fix whatever recent fuck up you did. Maybe I miss you too" },
-      { title: "Open when you need Boy advice", text: "You probably fucked up, but it's okay; If the guy can't make your fuck up his fault and still apologise, dump him. But call me and bitch about it so I can tell you you're stupif but still be on your side." },
-      { title: "Open when you Mom says something mean", text: "She's just overwhelmed, don't take it to heart. She's probably wrong, don't believe what she says. I still love you, we'll make it okay. " },
+      { title: "Open when you need Boy advice", text: "You probably fucked up, but it's okay; If the guy can't make your fuck up his fault and still apologise, dump him. But call me and bitch about it so I can tell you you're stupid but still be on your side." },
+      { title: "Open when Mom says something mean", text: "She's just overwhelmed, don't take it to heart. She's probably wrong, don't believe what she says. I still love you, we'll make it okay. " },
       { title: "Open when you feel lonely", text: "Why are you feeling lonely? You have the most amazing sister to call bro, call her?" },
       { title: "Open when it’s late and your brain is fried with work", text: "QUIT YOUR JOB, QUIT EVERYTHING, JUST SIT AND VIBE. That's a good thought but you have to keep working so I can have nice things that you pay for <3" }
     ]

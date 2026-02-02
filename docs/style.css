@@ -30,7 +30,7 @@ body.revealed{
 }
 
 .wrap{
-  height: 100vh;
+  height: 100dvh;
   display:flex;
   align-items:stretch;
   justify-content:stretch;
@@ -47,7 +47,7 @@ body.revealed{
   backdrop-filter: blur(10px);
   display:flex;
   flex-direction: column;
-  overflow: hidden;
+  overflow: visible;
 
   /* ✅ IMPORTANT so the intro absolute layer positions correctly inside card */
   position: relative;
