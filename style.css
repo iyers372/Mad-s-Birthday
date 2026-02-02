@@ -1,0 +1,339 @@
+:root{
+  /* overlay alpha starts at 0.80, later becomes 0.50 */
+  --overlay-alpha: 0.80;
+
+  --pink: rgba(255, 182, 213, 0.30);
+  --pink-strong: rgba(255, 111, 177, 0.28);
+  --white: rgba(255,255,255,0.95);
+  --muted: rgba(255,255,255,0.80);
+  --shadow: 0 18px 40px rgba(0,0,0,0.35);
+}
+
+*{ box-sizing:border-box; }
+html, body { height: 100%; }
+
+body{
+  margin:0;
+  font-family: system-ui, -apple-system, sans-serif;
+  color: rgba(255,255,255,0.95);
+  overflow: hidden;
+
+  /* ✅ solid black background */
+  background: #000;
+}
+
+
+body.revealed{
+  --overlay-alpha: 0.50;
+  transition: background 450ms ease;
+}
+
+.wrap{
+  height: 100vh;
+  display:flex;
+  align-items:stretch;
+  justify-content:stretch;
+  padding: 14px;
+}
+
+.card{
+  width:100%;
+  height: 100%;
+  background: rgba(0,0,0,0.18);
+  border-radius: 26px;
+  padding: 14px;
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(10px);
+  display:flex;
+  flex-direction: column;
+  overflow: hidden;
+
+  /* ✅ IMPORTANT so the intro absolute layer positions correctly inside card */
+  position: relative;
+}
+
+/* Intro typed layer occupies card */
+.intro-layer{
+  position: absolute;
+  inset: 0;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding: 18px;
+}
+
+.typed-wrap{
+  width: min(520px, 92%);
+  text-align: center;
+}
+
+.typed{
+  font-size: clamp(46px, 7vw, 44px);
+  font-weight: 700;
+  letter-spacing: 0.4px;
+  text-shadow: 0 10px 30px rgba(0,0,0,0.45);
+}
+
+.caret{
+  opacity: 0.85;
+  animation: blink 0.9s steps(1) infinite;
+}
+
+@keyframes blink{
+  50%{ opacity: 0; }
+}
+
+/* Header (appears after intro) */
+.top{
+  text-align:center;
+  margin: 2px 0 8px;
+}
+.top h1{
+  margin:0;
+  font-size: 18px;
+  letter-spacing: 0.2px;
+}
+.top p{
+  margin: 4px 0 0;
+  font-size: 13px;
+  color: var(--muted);
+}
+
+/* Grid fills remaining height */
+.grid{
+  flex: 1;
+  display:grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  align-content: stretch;
+  height: 100%;
+}
+
+/* PRESENT BUTTONS */
+.present{
+  appearance:none;
+  border:none;
+  background: transparent; /* no color layer */
+  color: #fff;
+
+  border: 1px solid rgba(255,255,255,0.22);
+  border-radius: 22px;
+  padding: 18px 14px;
+  text-align:center;
+  cursor:pointer;
+
+  display:flex;
+  flex-direction: column;
+  justify-content: center;
+
+  position: relative;
+  overflow: hidden;
+
+  transition: transform .18s ease, box-shadow .18s ease;
+  backdrop-filter: blur(6px); /* optional, subtle glass edge */
+}
+
+
+/* ✅ custom background overlay layer for each box */
+.present::before{
+  content:"";
+  position:absolute;
+  inset:0;
+
+  width:100%;
+  height:100%;
+
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  /* ✅ image-only, no overlay */
+  opacity: 0.8;   /* keep your increased pop */
+  z-index: 0;
+}
+
+
+/* ✅ content stays above overlay */
+.present > *{
+  position: relative;
+  z-index: 1;
+}
+
+.present:active{
+  transform: scale(0.98);
+}
+
+.present span{
+  font-size: 36px;
+  margin-bottom: 10px;
+}
+
+.present h3{
+  margin:0;
+  font-size: 20px;
+  line-height: 1.2;
+    color: #ffffff;
+}
+
+.present:nth-child(5){
+  grid-column: 1 / -1;
+
+border: 1px solid rgba(255,255,255,0.30);
+}
+
+/* ✅ BOX BACKGROUND PLACEHOLDERS (replace these filenames) */
+.present[data-box="reasons"]::before { background-image: url("imgs/box1bg.jpg"); }
+.present[data-box="memories"]::before { background-image: url("imgs/box2bg.jpg"); }
+.present[data-box="jokes"]::before { background-image: url("imgs/box3bg.jpg"); }
+.present[data-box="openwhen"]::before { background-image: url("imgs/box4bg.jpg"); }
+.present[data-box="coupon"]::before { background-image: url("imgs/box5bg.jpg"); }
+
+/* Hide/show states */
+.hidden{ display:none; }
+
+.fade-in{
+  animation: fadeIn 520ms ease forwards;
+}
+
+@keyframes fadeIn{
+  from{ opacity: 0; transform: translateY(6px); }
+  to{ opacity: 1; transform: translateY(0); }
+}
+
+/* MODAL */
+.modal{
+  position:fixed;
+  inset:0;
+  background: rgba(0,0,0,0.65);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding: 14px;
+  z-index: 999;
+}
+
+/* ✅ FIX: ensure hidden actually hides the modal */
+.modal.hidden{
+  display:none;
+}
+
+.modal-content{
+  width: min(520px, 100%);
+  background: rgba(255,255,255,0.16);
+  backdrop-filter: blur(14px);
+  border-radius: 24px;
+  padding: 18px 16px 16px;
+  position:relative;
+  box-shadow: var(--shadow);
+  animation: pop .25s ease;
+  max-height: 86vh;
+  overflow: hidden;
+}
+
+@keyframes pop{
+  from{ transform: scale(0.96); opacity:0; }
+  to{ transform: scale(1); opacity:1; }
+}
+
+.close{
+  position:absolute;
+  top: 10px;
+  right: 12px;
+  background:none;
+  border:none;
+  font-size: 26px;
+  color: var(--white);
+  cursor:pointer;
+}
+
+.modal-body{
+  margin-top: 8px;
+  font-size: 15px;
+  line-height: 1.55;
+  overflow: auto;
+  max-height: 78vh;
+  padding-right: 4px;
+}
+
+/* MEMORY VAULT */
+.vault-header{
+  display:flex;
+  align-items:center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.vault-title{
+  margin:0;
+  font-size: 18px;
+}
+
+.vault-progress{
+  position: relative;
+  height: 10px;
+  border-radius: 999px;
+  background: rgba(255,255,255,0.18);
+  overflow: hidden;
+  flex: 1;
+}
+
+.vault-progress > div{
+  height: 100%;
+  width: 33%;
+  background: rgba(255,255,255,0.75);
+  border-radius: 999px;
+  transition: width 220ms ease;
+}
+
+.vault-nav{
+  display:flex;
+  gap: 10px;
+  justify-content: center;
+  margin: 12px 0 4px;
+}
+
+.arrow{
+  border: 1px solid rgba(255,255,255,0.28);
+  background: rgba(255,255,255,0.12);
+  color: var(--white);
+  padding: 10px 14px;
+  border-radius: 14px;
+  cursor:pointer;
+  font-size: 16px;
+  line-height: 1;
+}
+
+.memory-card{
+  background: rgba(255,182,213,0.22);
+  border: 1px solid rgba(255,255,255,0.22);
+  border-radius: 20px;
+  padding: 16px;
+  min-height: 260px;
+  display:flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.memory-card h3{
+  margin:0 0 10px;
+  font-size: 16px;
+}
+
+.memory-card p{
+  margin:0;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.modal-body button.redeem{
+  margin-top: 10px;
+  width: 100%;
+  padding: 12px 14px;
+  border-radius: 14px;
+  border: 1px solid rgba(255,255,255,0.28);
+  background: rgba(255,255,255,0.14);
+  color: var(--white);
+  font-size: 15px;
+  cursor:pointer;
+}

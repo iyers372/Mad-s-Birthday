@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Happy Birthday, Mads 🎀</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body class="intro">
+
+  <main class="wrap">
+    <section class="card">
+
+      <!-- INTRO TYPING AREA -->
+      <div class="intro-layer" id="introLayer">
+        <div class="typed-wrap">
+          <div class="typed" aria-live="polite">
+            <span id="typedText"></span><span class="caret">|</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- HEADER (appears with grid) -->
+      <header class="top hidden" id="topHeader">
+        <h1>For The Best Sister Ever</h1>
+        <p>Tap any box</p>
+      </header>
+
+      <!-- PRESENT GRID -->
+      <div class="grid hidden" id="giftGrid">
+
+        <button class="present" data-box="reasons" type="button">
+          <span></span>
+          <h3>Reasons I Love You</h3>
+        </button>
+
+        <button class="present" data-box="memories" type="button">
+          <span></span>
+          <h3>Memory Vault</h3>
+        </button>
+
+        <button class="present" data-box="jokes" type="button">
+          <span></span>
+          <h3>Unhinged Inside Jokes</h3>
+        </button>
+
+        <button class="present" data-box="openwhen" type="button">
+          <span></span>
+          <h3>Open When You Need Me</h3>
+        </button>
+
+        <button class="present" data-box="coupon" type="button">
+          <span></span>
+          <h3>Coupon I Owe You</h3>
+        </button>
+
+      </div>
+    </section>
+  </main>
+
+  <!-- MODAL -->
+  <div class="modal hidden" id="modal">
+    <div class="modal-content" role="dialog" aria-modal="true" aria-label="Birthday box">
+      <button class="close" id="closeModal" type="button" aria-label="Close">×</button>
+      <div class="modal-body" id="modalBody"></div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
